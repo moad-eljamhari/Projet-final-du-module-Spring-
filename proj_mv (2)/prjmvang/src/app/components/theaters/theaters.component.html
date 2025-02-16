@@ -1,0 +1,13 @@
+<div>
+    <h2>Theaters and Their Films</h2>
+  
+    <div *ngFor="let theater of theaters" class="theater">
+      <h3>{{ theater.theaterName }}</h3>
+      <ul>
+        <li *ngFor="let film of theater.films">
+          {{ film.title }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  

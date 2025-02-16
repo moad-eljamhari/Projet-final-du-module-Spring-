@@ -1,0 +1,321 @@
+@import 'ngx-toastr/toastr';
+
+
+/* Movie Detail Container */
+.movie-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px;
+  overflow-x: auto;
+  max-width: 100%;
+  position: relative;
+  background: rgba(44, 62, 80, 0.8);  /* Semi-transparent dark background */
+  border-radius: 12px; /* Slightly round corners */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);  /* Adds a subtle shadow */
+  margin: 20px;
+  backdrop-filter: blur(8px); /* Adds blur effect behind the container */
+}
+
+/* Dark overlay */
+.movie-detail-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);  /* Dark overlay */
+  z-index: -1;
+  border-radius: 12px; /* Keep it consistent with container corners */
+}
+
+/* Movie Detail Content */
+.movie-detail-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 1300px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Movie Poster Container */
+.movie-poster-container {
+  flex-shrink: 0;
+  width: 250px;
+  margin-right: 20px;
+}
+
+/* Movie Poster Image */
+.movie-poster {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect on movie poster */
+.movie-poster:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Movie Info */
+.movie-info {
+  max-width: 900px;
+  color: #ecf0f1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Movie Info Heading */
+.movie-info h2 {
+  font-size: 36px;
+  color: #f39c12;  /* Gold color for the title */
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Movie Info Paragraphs */
+.movie-info p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  color: #bdc3c7;
+}
+
+/* Strong Text Styling */
+.movie-info strong {
+  color: #f39c12;  /* Gold color for labels */
+}
+
+/* Links Styling */
+.movie-info a {
+  color: #f39c12;
+  text-decoration: none;
+}
+
+.movie-info a:hover {
+  text-decoration: underline;
+}
+
+/* Collection Poster - Make it smaller */
+.collection-poster {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);  /* Dark shadow */
+  margin-top: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for collection poster */
+.collection-poster:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5); /* Darker shadow on hover */
+}
+
+/* Production Company Logos - Make them smaller */
+.company-logo {
+  width: 60px;
+  height: auto;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for production company logos */
+.company-logo:hover {
+  transform: scale(1.1); /* Slight zoom effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Production Companies List */
+ul.production-companies {
+  display: flex;
+  justify-content: center; /* Center the logos horizontally */
+  flex-wrap: wrap;
+  gap: 15px;
+  padding-left: 0;
+}
+
+/* List items under production companies */
+ul.production-companies li {
+  text-align: center;
+  font-size: 14px;
+  color: #ecf0f1;
+}
+
+ul.production-companies li:hover {
+  color: #f39c12; /* Gold color on hover */
+}
+
+/* Review Section */
+.review-section {
+  margin-top: 40px;
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.review-section h3 {
+  color: #f39c12;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Review Text */
+.review {
+  background: rgba(44, 62, 80, 0.8);
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  color: #ecf0f1;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.review strong {
+  color: #f39c12;
+  font-weight: 600;
+}
+
+/* Add Review Form */
+.add-review {
+  margin-top: 25px;
+  background: rgba(44, 62, 80, 0.85);
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.add-review textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  resize: vertical;
+  margin-bottom: 20px;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+.add-review textarea:focus {
+  background-color: #34495e;
+}
+
+.add-review .rating-input {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.add-review input[type="number"] {
+  width: 70px;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  text-align: center;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+.add-review input[type="number"]:focus {
+  background-color: #34495e;
+}
+
+.add-review button {
+  background: #f39c12;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.add-review button:hover {
+  background: #e67e22;
+  transform: scale(1.05);
+}
+
+/* Empty Review Prompt */
+.review-section p {
+  color: #ecf0f1;
+  text-align: center;
+  font-size: 18px;
+  font-style: italic;
+}
+
+.review-section a {
+  color: #f39c12;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.review-section a:hover {
+  text-decoration: underline;
+}
+
+/* Star Rating */
+.stars {
+  display: inline-flex;
+  font-size: 22px;
+  color: #f39c12;
+}
+
+.star-empty::before {
+  content: '☆'; /* Empty star */
+  color: #bdc3c7;
+  transition: color 0.3s ease;
+}
+
+.star-filled::before {
+  content: '★'; /* Filled star */
+  color: #f39c12;
+}
+
+/* Toastr Notifications */
+.toast-success {
+  background-color: #28a745 !important;
+  color: white !important;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.toast-error {
+  background-color: #dc3545 !important;
+  color: white !important;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.toast-warning {
+  background-color: #ffc107 !important;
+  color: black !important;
+  border-radius: 6px;
+  padding: 12px;
+}

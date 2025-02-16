@@ -1,0 +1,117 @@
+/* Navbar container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #343a40; /* Dark background for navbar */
+  color: white;
+}
+
+/* Left side of the navbar (for Home and Actors links) */
+.left-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  align-items: center; /* Ensure text and logo are aligned */
+}
+
+.nav-icon {
+  width: 20px; /* Adjust the size of the logo */
+  height: 20px;
+  margin-right: 8px; /* Spacing between logo and text */
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+  color: #3498db; /* Color change on hover for links */
+}
+
+/* Right side of the navbar (user controls) */
+.right-nav {
+  display: flex;
+  align-items: center;
+}
+
+/* User controls for logged-in users */
+.user-controls {
+  display: flex;
+  align-items: center;
+}
+
+.user-controls span {
+  margin-right: 15px;
+  font-weight: 600;
+}
+
+.btn {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 0.25rem;
+}
+
+/* Button styles for different actions */
+.btn-link {
+  background-color: transparent;
+  color: #3498db;
+  font-size: 14px;
+  border: 1px solid transparent;
+}
+
+.btn-link:hover {
+  background-color: rgba(52, 152, 219, 0.1);
+  color: #2980b9;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+}
+
+/* Login controls for non-logged-in users */
+.login-controls a {
+  background-color: #2980b9;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.login-controls a:hover {
+  background-color: #1c6fa3;
+}
+
+/* Responsiveness for smaller screens (hamburger icon on mobile) */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .right-nav {
+    width: 100%;
+    margin-top: 10px;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,92 @@
+<div *ngIf="loading" class="loading-message">
+  <p>Loading movie details...</p>
+</div>
+
+<div *ngIf="errorMessage" class="error-message">
+  <p>{{ errorMessage }}</p>
+</div>
+
+<div *ngIf="!loading && movie" class="movie-detail-container">
+  <div class="movie-detail-content">
+    <div class="movie-poster-container">
+      <img 
+        [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" 
+        alt="{{ movie.title }} poster" 
+        class="movie-poster"
+      />
+    </div>
+
+    <div class="movie-info">
+      <h2>{{ movie.title }}</h2>
+      <p><em>{{ movie.tagline || 'No tagline available' }}</em></p>
+
+      <div class="rating">
+        <p><strong>Rating:</strong> {{ movie.vote_average }}/10</p>
+      </div>
+
+      <p><strong>Genres:</strong> {{ genreNames }}</p>
+      <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+      <p><strong>Original Language:</strong> {{ movie.original_language }}</p>
+      <p><strong>Overview:</strong> {{ movie.overview }}</p>
+      <p><strong>Runtime:</strong> {{ movie.runtime }} mins</p>
+      <p><strong>Status:</strong> {{ movie.status }}</p>
+
+      <!-- Collection Info -->
+      <div *ngIf="movie.belongs_to_collection" class="collection-info">
+        <h3>Collection:</h3>
+        <p><strong>Name:</strong> {{ movie.belongs_to_collection.name }}</p>
+        <img 
+          [src]="'https://image.tmdb.org/t/p/w500' + movie.belongs_to_collection.poster_path" 
+          alt="Collection Poster" 
+          class="collection-poster"
+        />
+      </div>
+
+      <!-- Links -->
+      <p><strong>Homepage:</strong> <a [href]="movie.homepage" target="_blank">{{ movie.homepage }}</a></p>
+      <p><strong>IMDb ID:</strong> <a [href]="'https://www.imdb.com/title/' + movie.imdb_id" target="_blank">{{ movie.imdb_id }}</a></p>
+      
+      <!-- Production Companies -->
+      <p><strong>Production Companies:</strong></p>
+      <ul class="production-companies">
+        <li *ngFor="let company of movie.production_companies">
+          <img *ngIf="company.logo_path" [src]="'https://image.tmdb.org/t/p/w500' + company.logo_path" alt="{{ company.name }} logo" class="company-logo" />
+          {{ company.name }} ({{ company.origin_country }})
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Review Section -->
+   <!-- Add Review Form -->
+   <div *ngIf="loggedInUsername" class="add-review">
+    <h3>Write a Review</h3>
+    <textarea [(ngModel)]="reviewText" placeholder="Write your review..." rows="4"></textarea>
+    <div class="rating-input">
+      <label for="rating">Rating:</label>
+      <input type="number" [(ngModel)]="rating" min="1" max="5" placeholder="Rating (1-5)" />
+    </div>
+    <button (click)="submitReview()">Submit Review</button>
+  </div>
+  <div *ngIf="!loggedInUsername">
+    <p>Please <a routerLink="/login">log in</a> to submit a review.</p>
+  </div>
+<div class="review-section">
+  <h3>User Reviews</h3>
+  <div *ngIf="reviews.length === 0">
+    <p>No reviews yet. Be the first to review this movie!</p>
+  </div>
+  <div *ngFor="let review of reviews" class="review">
+    <p><strong>{{ review.username || 'Anonymous' }}</strong> 
+      (Rating: 
+      <span class="stars">
+        <span *ngFor="let star of getStars(review.rating)" [ngClass]="star"></span>
+      </span>
+      ): {{ review.comment }}
+    </p>
+  </div>
+</div>
+

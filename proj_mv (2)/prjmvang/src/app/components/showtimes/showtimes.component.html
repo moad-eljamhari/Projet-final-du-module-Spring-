@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>🎬 Movie Showtimes</h2>
+
+  <div class="theater-input">
+    <label for="theater">🎭 Select Theater:</label>
+    <select id="theater" [(ngModel)]="theaterName">
+      <option *ngFor="let theater of theaters" [value]="theater">{{ theater }}</option>
+    </select>
+
+    <button (click)="fetchShowtimes()">🔍 Search</button>
+  </div>
+
+  <div *ngIf="errorMessage" class="error">⚠️ {{ errorMessage }}</div>
+
+  <div *ngIf="showtimes.length > 0" class="showtimes-list">
+    <h3>📍 Showtimes at {{ theaterName }} in {{ location }}</h3>
+    <div class="day" *ngFor="let day of showtimes">
+      <h4>📅 {{ day.day }}</h4>
+      <div class="movie" *ngFor="let movie of day.movies">
+        <div class="movie-container">
+          <div class="movie-details">
+            <h5><a [href]="movie.link" target="_blank">🎥 {{ movie.name }}</a></h5>
+            <div class="showing" *ngFor="let showing of movie.showing">
+              <p><strong>{{ showing.type }}</strong>: {{ showing.time.join(', ') }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!errorMessage && showtimes.length === 0">
+    <p>❌ No showtimes available for the selected theater and location.</p>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="form-wrapper">
+  <h2>Register</h2>
+  <form (ngSubmit)="onSubmit()" #registrationForm="ngForm" novalidate>
+    <div class="form-control">
+      <input
+        type="text"
+        id="username"
+        name="username"
+        [(ngModel)]="username"
+        required
+        minlength="3"
+        #usernameField="ngModel"
+        class="form-control-input"
+      />
+      <label for="username">Username</label>
+    </div>
+
+    <div class="form-control">
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="password"
+        required
+        minlength="6"
+        #passwordField="ngModel"
+        class="form-control-input"
+      />
+      <label for="password">Password</label>
+    </div>
+
+    <div class="form-control">
+      <input
+        type="password"
+        id="confirmPassword"
+        name="confirmPassword"
+        [(ngModel)]="confirmPassword"
+        required
+        #confirmPasswordField="ngModel"
+        class="form-control-input"
+      />
+      <label for="confirmPassword">Confirm Password</label>
+      <div *ngIf="password !== confirmPassword" class="error-message">
+        Passwords must match.
+      </div>
+    </div>
+
+    <div class="form-control">
+      <input
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="email"
+        required
+        email
+        #emailField="ngModel"
+        class="form-control-input"
+      />
+      <label for="email">Email</label>
+    </div>
+
+    <button type="submit" [disabled]="registrationForm.invalid">Register</button>
+  </form>
+
+  <p>Already have an account? <a routerLink="/login">Login</a></p>
+</div>

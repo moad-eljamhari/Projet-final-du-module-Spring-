@@ -1,0 +1,22 @@
+<div *ngIf="errorMessage" class="error-message">
+  <p>{{ errorMessage }}</p>
+</div>
+
+<div class="recommendation-container">
+  <div class="recommendation-content">
+    <h2>Recommended Movies Based on Your Preferences</h2>
+    <h3 class="top-genres">Top Genres: {{ topGenres }}</h3>
+
+    <div class="movie-list">
+      <div *ngFor="let movie of recommendedMovies" class="movie-item">
+        <div class="movie-poster-container">
+          <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}" class="movie-poster" />
+        </div>
+        <div class="movie-info">
+          <h4>{{ movie.title }}</h4>
+          <p>{{ movie.overview }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

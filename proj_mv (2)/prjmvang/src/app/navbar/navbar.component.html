@@ -1,0 +1,36 @@
+<div class="navbar">
+  <div class="left-nav">
+    <!-- Logo for Home Link -->
+    <a routerLink="/home" class="nav-link">
+      Home
+    </a>
+    <a routerLink="/showtimes" class="nav-link">
+      <img src="assets/home-logo.png" alt="Showtimes Logo" class="nav-icon" />
+      Showtimes
+    </a>
+    
+    <!-- Logo for Actors Link -->
+    <a routerLink="/actors" class="nav-link">
+      <img src="assets/actors-logo.png" alt="Actors Logo" class="nav-icon" />
+      Actors
+    </a>
+  </div>
+  
+
+  <div class="right-nav">
+    <!-- Show when user is logged in -->
+    <div *ngIf="username$ | async as username" class="user-controls">
+      <!-- Username -->
+      <span>{{ username }}</span>
+
+      <!-- Buttons for personalized recommendations, chatbot, and logout -->
+      <button (click)="goToRecommendations()" class="btn btn-link">Personalized Recommendations</button>
+      <button (click)="logout()" class="btn btn-danger">Logout</button>
+    </div>
+
+    <!-- Show when user is not logged in -->
+    <div *ngIf="!(username$ | async)" class="login-controls">
+      <a routerLink="/login" class="btn btn-primary">Login</a>
+    </div>
+  </div>
+</div>

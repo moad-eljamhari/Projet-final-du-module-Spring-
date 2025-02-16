@@ -1,0 +1,118 @@
+<div class="whats-new-section">
+  <h2>What's New in the Movie World</h2>
+  <div *ngIf="newsLoading" class="loading-spinner">Loading...</div>
+  
+  <!-- Display carousel of latest news -->
+  <div *ngIf="!newsLoading && news.length > 0" class="carousel">
+    <div *ngFor="let article of news" class="carousel-item">
+      <img [src]="article.urlToImage" alt="Article image" class="carousel-image" />
+      <h3>{{ article.title }}</h3>
+    </div>
+  </div>
+
+  <!-- Show message if no news is available -->
+  <div *ngIf="!newsLoading && news.length === 0" class="no-news-message">
+    No latest news available.
+  </div>
+  
+  <!-- Button to navigate to the 'What's New' page -->
+  <button *ngIf="!newsLoading && news.length > 0" routerLink="/news" class="see-all-btn">See All News</button>
+</div>
+
+<!-- Search Container -->
+<div class="search-container">
+  <!-- Search type dropdown -->
+  <select [(ngModel)]="searchType" class="search-type-select">
+    <option value="title">Search by Title</option>
+    <option value="genre">Search by Genre</option>
+    <option value="releaseDate">Search by Release Date</option>
+    <option value="language">Search by Language</option>
+  </select>
+
+  <!-- Title input field -->
+  <div *ngIf="searchType === 'title'">
+    <input 
+      [(ngModel)]="searchQuery" 
+      (keyup.enter)="searchMovies()" 
+      type="text" 
+      class="search-input" 
+      placeholder="Search by title..."
+    />
+  </div>
+
+  <!-- Genre selection dropdown -->
+  <div *ngIf="searchType === 'genre'">
+    <select [(ngModel)]="selectedGenre" class="genre-select">
+      <option *ngFor="let genre of genres" [value]="genre.id">{{ genre.name }}</option>
+    </select>
+  </div>
+
+  <!-- Release Date selection dropdown (Year-based) -->
+  <div *ngIf="searchType === 'releaseDate'">
+    <select [(ngModel)]="selectedYear" class="year-select">
+      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+    </select>
+  </div>
+
+  <!-- Language selection dropdown -->
+  <div *ngIf="searchType === 'language'">
+    <select [(ngModel)]="selectedLanguage" class="language-select">
+      <option *ngFor="let language of languages" [value]="language.code">{{ language.name }}</option>
+    </select>
+  </div>
+
+  <!-- Search button -->
+  <button (click)="searchMovies()" class="search-button">Search</button>
+</div>
+
+<!-- Loading message -->
+<div *ngIf="loading" class="loading-message">
+  <p>Loading movies...</p>
+</div>
+
+<!-- Error message -->
+<div *ngIf="errorMessage" class="error-message">
+  <p>{{ errorMessage }}</p>
+</div>
+
+<!-- Display search results -->
+<div *ngIf="!loading && !errorMessage" class="movies-container">
+  <div *ngFor="let movie of movies" class="movie-card" (click)="viewMovieDetail(movie.id)">
+    <img 
+      *ngIf="movie.poster_path" 
+      [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" 
+      alt="{{ movie.title }} poster" 
+      class="movie-poster"
+    />
+    
+    <div class="movie-info">
+      <h3>{{ movie.title }}</h3>
+      <p><strong>Genres:</strong> {{ getGenreNames(movie.genre_ids) }}</p>
+      <p><strong>Original Language:</strong> {{ movie.original_language }}</p>
+      <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+      <p><strong>Overview:</strong> {{ movie.overview }}</p>
+      <p class="movie-rating"><strong>Rating:</strong> {{ movie.vote_average }}/10</p>
+    </div>
+  </div>
+</div>
+
+<!-- Chatbot Button -->
+<button (click)="toggleChatbot()" class="chatbot-button">Chat with Us</button>
+
+<!-- Chatbot Window -->
+<div *ngIf="isChatbotOpen" class="chatbot-window" [ngStyle]="{top: chatbotPosition.y + 'px', left: chatbotPosition.x + 'px'}">
+  <div class="chatbot-header">
+    <h4>Movie Chatbot</h4>
+    <button (click)="toggleChatbot()">Close</button>
+  </div>
+  <div class="chatbot-body">
+    <div *ngFor="let message of messages" class="chatbot-message">
+      <!-- Ensure newlines are respected in the messages -->
+      <p [style.white-space]="'pre-line'">{{ message.text }}</p>
+    </div>
+  </div>
+  <div class="chatbot-footer">
+    <input [(ngModel)]="userInput" (keyup.enter)="sendMessage()" type="text" class="chatbot-input" placeholder="Ask me something..."/>
+    <button (click)="sendMessage()" class="send-button">Send</button>
+  </div>
+</div>

@@ -1,0 +1,91 @@
+/* Overall chat container */
+.chat-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #2c2c2c;  /* Dark background */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #f0f0f0;  /* Light text */
+}
+
+/* Chat history */
+.chat-history {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+/* Individual message container */
+.message {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #3a3a3a;  /* Slightly lighter dark background for messages */
+}
+
+/* User message style */
+.message.User {
+  background-color: #0066cc;  /* Blue background for user */
+  text-align: right;
+}
+
+/* Bot message style */
+.message.Bot {
+  background-color: #444;  /* Darker background for bot */
+  text-align: left;
+}
+
+/* Input and send button container */
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Input field */
+.input-container input {
+  width: 80%;
+  padding: 10px;
+  background-color: #3a3a3a;  /* Dark background for input */
+  border: 1px solid #555;
+  border-radius: 4px;
+  color: #f0f0f0;  /* Light text for input */
+  font-size: 16px;
+}
+
+.input-container input:focus {
+  outline: none;
+  border-color: #0066cc;  /* Highlight border when focused */
+}
+
+/* Send button */
+.input-container button {
+  padding: 10px 15px;
+  background-color: #0066cc;  /* Blue button */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.input-container button:hover {
+  background-color: #004a99;  /* Darker blue on hover */
+}
+
+/* Scrollbar customization */
+.chat-history::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-history::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 10px;
+}
+
+.chat-history::-webkit-scrollbar-track {
+  background-color: #333;
+}

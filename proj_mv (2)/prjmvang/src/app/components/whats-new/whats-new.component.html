@@ -1,0 +1,38 @@
+<div class="news-container">
+    <h2>Latest Movie News</h2>
+  
+    <!-- Loading state -->
+    <div *ngIf="loading" class="loading-spinner">Loading...</div>
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <!-- News Articles -->
+  <div *ngIf="!loading && !errorMessage && news.length > 0" class="news-grid">
+    <div *ngFor="let article of news" class="news-card">
+      <!-- Handle Image URL -->
+      <img *ngIf="article.urlToImage && article.urlToImage.startsWith('http')" 
+           [src]="article.urlToImage" 
+           alt="Article Image" 
+           class="news-image" />
+      <img *ngIf="!article.urlToImage || !article.urlToImage.startsWith('http')" 
+           src="assets/default-image.jpg" 
+           alt="Default Image" 
+           class="news-image" />
+      
+      <div class="news-content">
+        <h3 class="news-title">{{ article.title }}</h3>
+        <p class="news-description">{{ article.description || 'No description available.' }}</p>
+        <p class="news-content-text" *ngIf="article.content">{{ article.content }}</p>
+        <p class="news-date">Published on: {{ article.publishedAt | date: 'medium' }}</p>
+        <a [href]="article.url" target="_blank" class="read-more">Read full article</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- No News Available -->
+  <div *ngIf="!loading && !errorMessage && news.length === 0" class="no-news-message">
+    No news available at the moment. Please check back later.
+  </div>
+</div>

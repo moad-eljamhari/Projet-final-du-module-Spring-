@@ -1,0 +1,8 @@
+:host {
+  display: block;
+  min-height: 100vh; /* Ensure it covers the full height of the screen */
+  background-color: #121212; /* Dark background */
+  color: #ffffff; /* Light text for contrast */
+  margin: 0;
+  padding: 0;
+}

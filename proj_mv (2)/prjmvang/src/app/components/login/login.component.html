@@ -1,0 +1,41 @@
+<div class="form-wrapper">
+  <h2>Login</h2>
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+    <div class="form-control">
+      <input
+        type="text"
+        id="username"
+        name="username"
+        [(ngModel)]="username"
+        required
+        minlength="3"
+        #usernameField="ngModel"
+        class="form-control-input"
+      />
+      <label for="username">Username</label>
+    </div>
+
+    <div class="form-control">
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="password"
+        required
+        minlength="6"
+        #passwordField="ngModel"
+        class="form-control-input"
+      />
+      <label for="password">Password</label>
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+
+    <div class="form-help">
+
+      </div>
+   
+  </form>
+
+  <p>Don't have an account? <a routerLink="/register">Register now</a></p>
+</div>

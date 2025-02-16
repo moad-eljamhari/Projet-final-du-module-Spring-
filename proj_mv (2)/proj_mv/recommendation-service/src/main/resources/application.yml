@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: recommendation-service
+  cloud:
+    discovery:
+      client:
+        service-url:
+          defaultZone: http://localhost:8761/eureka/
